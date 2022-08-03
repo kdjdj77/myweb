@@ -29,7 +29,7 @@ function parseJSON(country) {
       let text = cData[`${country}`][`vaccine_${i}`][`vaccine_${i}`];
       let per = Math.round(parseInt(cData[`${country}`][`vaccine_${i}`][`vaccine_${i}`]) / parseInt(name[`${country}`]) * 100) / 100;
       if (i == 1 && per > 93) per = 95.26;
-		if (i == 2 && per > 93) per = 93.37;
+		if (i == 2 && per > 93) per = 94.37;
 		document.getElementById(`vaccine${i}`).innerText = `${text}명`;
       document.getElementById(`percent${i}`).innerText = ` (${per}%)`;
 

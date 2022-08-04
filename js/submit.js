@@ -23,6 +23,11 @@ function submit() {
       alert("잘못된 전화번호입니다");
       return false;
    }
+   if (!periodValid(frm)) {
+      frm["yearP1"].focus();
+      alert("잘못된 기간입니다");
+      return false;
+   }
    let myjson = 
    {
       "team":frm["team"].value,
@@ -31,29 +36,39 @@ function submit() {
       "phone":frm["phone"].value,
       "email":frm["email"].value,
       "address":frm["address"].value,
-      "symptom":frm["symptom"].value,
-      "feverDate":{
+      "symptom":getSymptom(),
+      "feverDate":returnDate(frm, "F"),
+      /*
+      {
          "year":frm["yearF"].value,
          "mon":frm["monF"].value,
          "day":frm["dayF"].value,
       },
-      "symptomDate":{
+      */
+      "symptomDate":returnDate(frm, ""),
+      /*
+      {
          "year":frm["year"].value,
          "mon":frm["mon"].value,
          "day":frm["day"].value,
       },
+      */
       "place":frm["place"].value,
       "inmate":{
-         "TF":frm["inmate"].value,
+         "exist":frm["inmate"].value,
          "who":frm["who"].value,
       },
       "Period":{
+         "period1":returnDate(frm, "P1"),
+         "period2":returnDate(frm, "P2"),
+         /*
          "year1":frm["yearP1"].value,
          "mon1":frm["monP1"].value,
          "day1":frm["dayP1"].value,
          "year2":frm["yearP2"].value,
          "mon2":frm["monP2"].value,
          "day2":frm["dayP2"].value,
+         */
       },
       "note":frm["note"].value,
    }
@@ -70,4 +85,25 @@ function submit() {
    document.body.appendChild(result);
 
    result.submit();
+}
+function getSymptom() {
+   let val = document.querySelectorAll('input[type=checkbox][name=symptom]:checked');
+   let sJson = [];
+   val.forEach(function(data) {
+      sJson.push(data.value);
+   });
+   return sJson;
+}
+function periodValid(frm) {
+   if (returnDate(frm, "P1") > returnDate(frm, "P2")) return false;
+   else return true;
+}
+function returnDate(frm, n) {
+   let period = "";
+   period += frm[`year${n}`].value;
+   if (frm[`mon${n}`].value < 10) period += "0"+ frm[`mon${n}`].value;
+   else period += frm[`mon${n}`].value;
+   if (frm[`day${n}`].value < 10) period += "0"+ frm[`day${n}`].value;
+   else period += frm[`day${n}`].value;
+   return parseInt(period);
 }

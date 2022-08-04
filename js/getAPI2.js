@@ -30,7 +30,7 @@ function parseJSON(country) {
       let per = Math.round(parseInt(cData[`${country}`][`vaccine_${i}`][`vaccine_${i}`]) / parseInt(name[`${country}`]) * 100) / 100;
       if (i == 1 && per > 93) per = 95.26;
 		if (i == 2 && per > 93) per = 94.37;
-		document.getElementById(`vaccine${i}`).innerText = `${text}명`;
+		document.getElementById(`vaccine${i}`).innerText = `${changeFormat(text)}명`;
       document.getElementById(`percent${i}`).innerText = ` (${per}%)`;
 
       document.getElementById(`bar${i}`).style.height = `${per}%`;
@@ -47,5 +47,8 @@ function getDateString() {
 	if (day < 10) day = "0" + day;
 
 	return `(${year}/${month}/${day})`;
+}
+function changeFormat(num) {
+	return num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
 getAPI();

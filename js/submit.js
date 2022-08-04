@@ -38,21 +38,7 @@ function submit() {
       "address":frm["address"].value,
       "symptom":getSymptom(),
       "feverDate":returnDate(frm, "F"),
-      /*
-      {
-         "year":frm["yearF"].value,
-         "mon":frm["monF"].value,
-         "day":frm["dayF"].value,
-      },
-      */
       "symptomDate":returnDate(frm, ""),
-      /*
-      {
-         "year":frm["year"].value,
-         "mon":frm["mon"].value,
-         "day":frm["day"].value,
-      },
-      */
       "place":frm["place"].value,
       "inmate":{
          "exist":frm["inmate"].value,
@@ -61,14 +47,6 @@ function submit() {
       "Period":{
          "period1":returnDate(frm, "P1"),
          "period2":returnDate(frm, "P2"),
-         /*
-         "year1":frm["yearP1"].value,
-         "mon1":frm["monP1"].value,
-         "day1":frm["dayP1"].value,
-         "year2":frm["yearP2"].value,
-         "mon2":frm["monP2"].value,
-         "day2":frm["dayP2"].value,
-         */
       },
       "note":frm["note"].value,
    }

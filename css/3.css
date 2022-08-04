@@ -16,10 +16,11 @@ body {
    width:70%;
    height:auto;
    margin:auto;
-   padding:100px 40px 100px 100px;
+   padding:100px 40px 100px 120px;
    z-index:5;
 }
 #title {
+   margin-left:-100px;
    font-size:2rem;
    text-align:center;
 }

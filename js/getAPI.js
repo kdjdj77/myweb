@@ -33,10 +33,10 @@ function getAPI() {
 //data1/////////////////////////////////////////////////////////////
 function parseJSON1(country) {
 	document.getElementById('countryName2').innerText = bData[`${country}`]["countryName"] + getDateString();
-	document.getElementById('newCase2').innerText = bData[`${country}`]["newCase"];
-	document.getElementById('totalCase2').innerText = bData[`${country}`]["totalCase"];
-	document.getElementById('recovered2').innerText = bData[`${country}`]["recovered"];
-	document.getElementById('death2').innerText = bData[`${country}`]["death"];
+	document.getElementById('newCase2').innerText = changeFormat(bData[`${country}`]["newCase"]);
+	document.getElementById('totalCase2').innerText = changeFormat(bData[`${country}`]["totalCase"]);
+	document.getElementById('recovered2').innerText = changeFormat(bData[`${country}`]["recovered"]);
+	document.getElementById('death2').innerText = changeFormat(bData[`${country}`]["death"]);
 }
 function setRank1(data) {
 	const name = ["seoul","busan","daegu","incheon","gwangju","daejeon","ulsan","sejong",
@@ -64,10 +64,10 @@ function setRank1(data) {
 //data2/////////////////////////////////////////////////////////////
 function parseJSON2(aData){
 	document.getElementById('countryName3').innerText = "전국" + getDateString();
-	document.getElementById('newCase3').innerText = aData[`korea`]["incDec"]
-	document.getElementById('totalCase3').innerText = aData[`korea`]["totalCnt"]
-	document.getElementById('recovered3').innerText = aData[`korea`]["recCnt"]
-	document.getElementById('death3').innerText = aData[`korea`]["deathCnt"]
+	document.getElementById('newCase3').innerText = changeFormat(aData[`korea`]["incDec"]);
+	document.getElementById('totalCase3').innerText = changeFormat(aData[`korea`]["totalCnt"]);
+	document.getElementById('recovered3').innerText = changeFormat(aData[`korea`]["recCnt"]);
+	document.getElementById('death3').innerText = changeFormat(aData[`korea`]["deathCnt"]);
 }
 function setRank2(aData) {
 	for(let i = 1; i < 6; i++) {
@@ -86,5 +86,8 @@ function getDateString() {
 	if (day < 10) day = "0" + day;
 
 	return `(${year}/${month}/${day})`;
+}
+function changeFormat(num) {
+	return num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
 getAPI();

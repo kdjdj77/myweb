@@ -29,6 +29,10 @@ header nav a {
    justify-content:center;
    height:38px;
 }
+header nav a img:hover {
+   transform:rotate(360deg);
+   transition:5s;
+}
 header nav ul {
    width:60%;
    font-size:1.5rem;
